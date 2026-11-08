@@ -3,7 +3,7 @@ from urllib.request import Request, urlopen
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
 TOKEN = os.environ["BOT_TOKEN"]
-_raw = os.environ.get("CHANNEL", "@bugunnimapishiray).strip()
+_raw = os.environ.get("CHANNEL", "@bugunnimapishiray").strip()
 CHANNEL = "@" + _raw.split("t.me/")[-1].lstrip("@").strip("/")  # havola yozilsa ham ishlaydi
 print("Kanal:", CHANNEL, flush=True)
 API = f"https://api.telegram.org/bot{TOKEN}/"
