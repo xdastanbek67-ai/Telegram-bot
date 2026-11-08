@@ -3,7 +3,9 @@ from urllib.request import Request, urlopen
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
 TOKEN = os.environ["BOT_TOKEN"]
-CHANNEL = os.environ.get("CHANNEL", "@nimapishiray")  # kanal username'i
+_raw = os.environ.get("CHANNEL", "@bugunnimapishiray).strip()
+CHANNEL = "@" + _raw.split("t.me/")[-1].lstrip("@").strip("/")  # havola yozilsa ham ishlaydi
+print("Kanal:", CHANNEL, flush=True)
 API = f"https://api.telegram.org/bot{TOKEN}/"
 
 RECIPES = [
@@ -161,3 +163,5 @@ class Ping(BaseHTTPRequestHandler):
 if __name__ == "__main__":
     threading.Thread(target=poll, daemon=True).start()
     HTTPServer(("0.0.0.0", int(os.environ.get("PORT", 10000))), Ping).serve_forever()
+
+
